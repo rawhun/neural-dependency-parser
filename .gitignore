@@ -1,0 +1,6 @@
+echo "# Data files" > .gitignore
+echo "data/processed/" >> .gitignore
+echo "data/raw/" >> .gitignore
+echo "*.pt" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
