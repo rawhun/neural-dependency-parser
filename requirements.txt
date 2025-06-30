@@ -1,0 +1,6 @@
+torch>=1.10
+numpy
+spacy
+tqdm
+requests
+conllu 
