@@ -1,172 +1,172 @@
-# Neural Network Dependency Parser
+ Neural Network Dependency Parser
 
-A state-of-the-art neural dependency parser implemented in PyTorch, achieving **88.34% UAS** and **85.55% LAS** on the Universal Dependencies English Web Treebank (UD-EWT). This implementation features a BiLSTM encoder with biaffine attention, character-level embeddings, and comprehensive experimentation tools.
+A state-of-the-art neural dependency parser implemented in PyTorch, achieving 88.34% UAS and 85.55% LAS on the Universal Dependencies English Web Treebank (UD-EWT). This implementation features a BiLSTM encoder with biaffine attention, character-level embeddings, and comprehensive experimentation tools.
 
-## 🚀 Features
+ 🚀 Features
 
-- **BiLSTM + Biaffine Attention**: Modern architecture for dependency parsing
-- **Character-Level Embeddings**: Enhanced word representations using CNN
-- **Universal Dependencies Support**: Compatible with UD format
-- **Interactive Demo**: Parse custom sentences with visualization
-- **Hyperparameter Experiments**: Automated experimentation framework
-- **Modular Design**: Easy to extend and modify
-- **Comprehensive Evaluation**: UAS/LAS metrics and comparison with spaCy
+- BiLSTM + Biaffine Attention: Modern architecture for dependency parsing
+- Character-Level Embeddings: Enhanced word representations using CNN
+- Universal Dependencies Support: Compatible with UD format
+- Interactive Demo: Parse custom sentences with visualization
+- Hyperparameter Experiments: Automated experimentation framework
+- Modular Design: Easy to extend and modify
+- Comprehensive Evaluation: UAS/LAS metrics and comparison with spaCy
 
-## 📊 Performance
+ 📊 Performance
 
 | Metric | Score |
 |--------|-------|
-| **UAS (Unlabeled Attachment Score)** | 88.34% |
-| **LAS (Labeled Attachment Score)** | 85.55% |
+| UAS (Unlabeled Attachment Score) | 88.34% |
+| LAS (Labeled Attachment Score) | 85.55% |
 
 *Results on UD-EWT test set*
 
-## 🏗️ Architecture
+ 🏗️ Architecture
 
-- **Word Embeddings**: 100-dimensional
-- **POS Embeddings**: 32-dimensional  
-- **Character CNN**: 50-dimensional embeddings, 100-dimensional output
-- **BiLSTM Encoder**: 256 hidden units, 2 layers
-- **Biaffine Attention**: For head and label prediction
-- **Dropout**: 33% for regularization
+- Word Embeddings: 100-dimensional
+- POS Embeddings: 32-dimensional  
+- Character CNN: 50-dimensional embeddings, 100-dimensional output
+- BiLSTM Encoder: 256 hidden units, 2 layers
+- Biaffine Attention: For head and label prediction
+- Dropout: 33% for regularization
 
-## 📦 Installation
+ 📦 Installation
 
-### Prerequisites
+ Prerequisites
 - Python 3.8+
 - PyTorch 1.10+
 - CUDA (optional, for GPU acceleration)
 
-### Setup
+ Setup
 
-1. **Clone the repository:**
-```bash
+1. Clone the repository:
+
 git clone https://github.com/rawhun/neural-dependency-parser.git
 cd neural-dependency-parser
-```
 
-2. **Install dependencies:**
-```bash
+
+2. Install dependencies:
+
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
-```
 
-3. **Download and preprocess data:**
-```bash
+
+3. Download and preprocess data:
+
 python data/download_ud_ewt.py
 python data/preprocess.py
-```
 
-## 🚀 Quick Start
 
-### 1. Train the Model
-```bash
+ 🚀 Quick Start
+
+ 1. Train the Model
+
 python train.py
-```
+
 *Training takes ~2-3 hours on CPU, ~30 minutes on GPU*
 
-### 2. Evaluate Performance
-```bash
+ 2. Evaluate Performance
+
 python evaluate.py
-```
 
-### 3. Parse Custom Sentences
-```bash
+
+ 3. Parse Custom Sentences
+
 python predict.py
-```
 
-### 4. Run Experiments
-```bash
+
+ 4. Run Experiments
+
 python experiment.py
-```
 
 
-## 📁 Project Structure
 
-```
+ 📁 Project Structure
+
+
 Neural Network Parser/
 ├── data/
-│   ├── raw/                    # Raw UD-EWT data
-│   ├── processed/              # Preprocessed data
-│   ├── download_ud_ewt.py      # Data download script
-│   └── preprocess.py           # Data preprocessing
+│   ├── raw/                     Raw UD-EWT data
+│   ├── processed/               Preprocessed data
+│   ├── download_ud_ewt.py       Data download script
+│   └── preprocess.py            Data preprocessing
 ├── models/
 │   ├── __init__.py
-│   ├── vocab.py               # Vocabulary class
-│   ├── bilstm.py              # BiLSTM encoder
-│   ├── attention.py           # Biaffine attention
-│   ├── parser.py              # Main parser model
-│   └── enhanced_parser.py     # Enhanced model with char embeddings
-├── train.py                   # Training script
-├── train_enhanced.py          # Enhanced training
-├── evaluate.py                # Evaluation script
-├── predict.py                 # Prediction script
-├── experiment.py              # Hyperparameter experiments
-├── demo.ipynb                 # Interactive demo notebook
-├── requirements.txt           # Dependencies
-└── README.md                  # This file
-```
+│   ├── vocab.py                Vocabulary class
+│   ├── bilstm.py               BiLSTM encoder
+│   ├── attention.py            Biaffine attention
+│   ├── parser.py               Main parser model
+│   └── enhanced_parser.py      Enhanced model with char embeddings
+├── train.py                    Training script
+├── train_enhanced.py           Enhanced training
+├── evaluate.py                 Evaluation script
+├── predict.py                  Prediction script
+├── experiment.py               Hyperparameter experiments
+├── demo.ipynb                  Interactive demo notebook
+├── requirements.txt            Dependencies
+└── README.md                   This file
 
-## 🔧 Usage Examples
 
-### Basic Training
-```python
+ 🔧 Usage Examples
+
+ Basic Training
+python
 from models.parser import DependencyParser
 from train import train
 
-# Train the model
+ Train the model
 train()
-```
 
-### Custom Prediction
-```python
+
+ Custom Prediction
+python
 from predict import load_model_and_vocabs, predict_dependencies
 
-# Load model
+ Load model
 model, word_vocab, pos_vocab, label_vocab, device = load_model_and_vocabs()
 
-# Parse sentence
+ Parse sentence
 sentence = "The cat sat on the mat."
 words, pos_tags = tokenize_sentence(sentence)
 heads, labels = predict_dependencies(model, words, pos_tags, word_vocab, pos_vocab, label_vocab, device)
-```
 
-### Interactive Parsing
-```bash
+
+ Interactive Parsing
+
 python predict.py
-# Enter sentences interactively
-```
+ Enter sentences interactively
 
-## 🧪 Experiments
+
+ 🧪 Experiments
 
 The project includes a comprehensive experimentation framework:
 
-### Hyperparameter Search
-```bash
-python experiment.py
-```
+ Hyperparameter Search
 
-**Tested configurations:**
+python experiment.py
+
+
+Tested configurations:
 - Embedding dimensions: 100, 200
 - LSTM sizes: 256, 512  
 - Learning rates: 1e-3, 2e-3, 5e-3
 - Optimizers: Adam, SGD
 - Weight decay: 0, 1e-4
 
-### Enhanced Models
-```bash
-python train_enhanced.py
-```
+ Enhanced Models
 
-**Available enhancements:**
+python train_enhanced.py
+
+
+Available enhancements:
 - Character-level CNN embeddings
 - Pre-trained word vectors
 - Multi-task learning (dependency + POS)
 - Layer normalization
 
-## 📈 Results
+ 📈 Results
 
-### Performance Comparison
+ Performance Comparison
 
 | Model | UAS | LAS | Training Time |
 |-------|-----|-----|---------------|
@@ -174,12 +174,12 @@ python train_enhanced.py
 | + Char Embeddings | 89.12% | 86.23% | ~3 hours |
 | + Hyperparameter Tuning | 89.45% | 86.67% | ~6 hours |
 
-### Example Parsing Results
+ Example Parsing Results
 
-**Input:** "The cat sat on the mat."
+Input: "The cat sat on the mat."
 
-**Output:**
-```
+Output:
+
 ID  Word            POS     Head    Label          
 0   The             DET     cat     det           
 1   cat             NOUN    sat     nsubj         
@@ -188,65 +188,65 @@ ID  Word            POS     Head    Label
 4   the             DET     mat     det           
 5   mat             NOUN    on      pobj          
 6   .               PUNCT   sat     punct         
-```
 
-## 🔬 Technical Details
 
-### Model Architecture
-1. **Embedding Layer**: Word + POS embeddings
-2. **Character CNN**: Convolutional character embeddings
-3. **BiLSTM Encoder**: Contextual representations
-4. **Biaffine Attention**: Head and label scoring
-5. **Joint Prediction**: Head and dependency label
+ 🔬 Technical Details
 
-### Training Details
-- **Optimizer**: Adam (lr=2e-3)
-- **Loss**: Cross-entropy for heads and labels
-- **Batch Size**: 32 (16 with char embeddings)
-- **Epochs**: 20 (early stopping based on dev LAS)
-- **Regularization**: Dropout (33%), Weight decay (1e-4)
+ Model Architecture
+1. Embedding Layer: Word + POS embeddings
+2. Character CNN: Convolutional character embeddings
+3. BiLSTM Encoder: Contextual representations
+4. Biaffine Attention: Head and label scoring
+5. Joint Prediction: Head and dependency label
 
-## 🤝 Contributing
+ Training Details
+- Optimizer: Adam (lr=2e-3)
+- Loss: Cross-entropy for heads and labels
+- Batch Size: 32 (16 with char embeddings)
+- Epochs: 20 (early stopping based on dev LAS)
+- Regularization: Dropout (33%), Weight decay (1e-4)
+
+ 🤝 Contributing
 
 We welcome contributions! Please feel free to submit a Pull Request.
 
-### Development Setup
+ Development Setup
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
 4. Add tests if applicable
 5. Submit a pull request
 
-### Areas for Improvement
+ Areas for Improvement
 - Pre-trained word vectors integration
 - Multi-lingual support
 - Graph neural network architectures
 - Semi-supervised learning
 - Real-time parsing API
 
-## 📚 References
+ 📚 References
 
 - [Universal Dependencies](https://universaldependencies.org/)
 - [BiAffine Dependency Parser](https://github.com/tdpeterson/dependency-parser-pytorch)
 - [PyTorch Tutorials](https://pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html)
 - [spaCy Documentation](https://spacy.io/universal-dependencies)
 
-## 📄 License
+ 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+ 🙏 Acknowledgments
 
 - Universal Dependencies Consortium for the dataset
 - PyTorch team for the excellent framework
 - spaCy team for tokenization and linguistic features
 - The NLP community for research and implementations
 
-## 📞 Contact
+ 📞 Contact
 
 For questions, issues, or contributions:
 - Open an issue on GitHub
 - Email: connect.txrun@rediffmail.com
 ---
 
-**⭐ If you find this project useful, please give it a star on GitHub!** 
+⭐ If you find this project useful, please give it a star on GitHub! 
